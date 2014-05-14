@@ -15,6 +15,8 @@ WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
 #ifndef __OPEN_SSL_SUPPORT_H__
 #define __OPEN_SSL_SUPPORT_H__
 
+typedef __builtin_va_list va_list;
+
 #include <efi.h>
 #include <efilib.h>
 #include <Base.h>
@@ -86,7 +88,11 @@ typedef __builtin_va_list VA_LIST;
    portably, hence it is provided by a Standard C header file.
    For pre-Standard C compilers, here is a version that usually works
    (but watch out!): */
+#ifdef __GNUC__
+#define offsetof __builtin_offsetof
+#else
 #define offsetof(type, member) ( (int) & ((type*)0) -> member )
+#endif
 
 //
 // Basic types from EFI Application Toolkit required to buiild Open SSL
