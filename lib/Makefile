@@ -11,14 +11,14 @@ EFI_CRT_OBJS    = $(EFI_PATH)/crt0-efi-$(ARCH).o
 EFI_LDS         = $(EFI_PATH)/elf_$(ARCH)_efi.lds
 
 CFLAGS          = -ggdb -O0 -fno-stack-protector -fno-strict-aliasing -fpic \
-		  -fshort-wchar -Wall -mno-red-zone -DBUILD_EFI -fno-builtin \
+		  -fshort-wchar -Wall -DBUILD_EFI -fno-builtin \
 		  -Werror \
 		  $(EFI_INCLUDES)
 ifeq ($(ARCH),x86_64)
-        CFLAGS  += -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI
+        CFLAGS  += -mno-red-zone -DEFI_FUNCTION_WRAPPER -DGNU_EFI_USE_MS_ABI
 endif
 ifeq ($(ARCH),ia32)
-        CFLAGS  += -m32
+        CFLAGS  += -mno-red-zone -m32
 endif
 
 lib.a: $(LIBFILES)

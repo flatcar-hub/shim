@@ -159,7 +159,7 @@ exit_boot_services(EFI_HANDLE image_key, UINTN map_key)
 }
 
 static EFI_STATUS EFIAPI
-exit(EFI_HANDLE ImageHandle, EFI_STATUS ExitStatus,
+_exit(EFI_HANDLE ImageHandle, EFI_STATUS ExitStatus,
      UINTN ExitDataSize, CHAR16 *ExitData)
 {
 	EFI_STATUS status;
@@ -203,5 +203,5 @@ hook_system_services(EFI_SYSTEM_TABLE *local_systab)
 	 * bootloader and still e.g. start a new one or run an internal
 	 * shell. */
 	system_exit = systab->BootServices->Exit;
-	systab->BootServices->Exit = exit;
+	systab->BootServices->Exit = _exit;
 }
