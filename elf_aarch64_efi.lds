@@ -34,6 +34,14 @@ SECTIONS
    . = ALIGN(16);
    _bss_end = .;
   }
+
+  . = ALIGN(4096);
+  .vendor_cert :
+  {
+    *(.vendor_cert)
+  }
+  . ALIGN(4096);
+
   .rela.dyn : { *(.rela.dyn) }
   .rela.plt : { *(.rela.plt) }
   .rela.got : { *(.rela.got) }
