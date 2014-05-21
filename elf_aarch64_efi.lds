@@ -40,7 +40,7 @@ SECTIONS
   {
     *(.vendor_cert)
   }
-  . ALIGN(4096);
+  . = ALIGN(4096);
 
   .rela.dyn : { *(.rela.dyn) }
   .rela.plt : { *(.rela.plt) }
